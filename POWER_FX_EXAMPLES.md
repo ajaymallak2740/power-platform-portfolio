@@ -1,382 +1,190 @@
-\# Power Fx Development
+# Power Fx Development
 
+## Overview
 
-
-\## Overview
-
-
-
-Power Fx is used to implement application logic and functionality within Power Apps. In Canvas Apps, Power Fx can be used for data filtering, conditional logic, variables, collections, validation and record management.
-
-
+Power Fx is used to implement application logic and functionality within Power Apps. In Canvas Apps, Power Fx can be used for data filtering, conditional logic, variables, collections, validation, and record management.
 
 The following sections demonstrate common Power Fx concepts used while developing Power Apps.
 
+---
 
-
-\---
-
-
-
-\# Filtering Records
-
-
+## Filtering Records
 
 Filtering is used to display records based on specific conditions.
 
-
-
 Example:
 
-
-
 ```powerfx
-
 Filter(
-
-&#x20;   Employees,
-
-&#x20;   Status = "Active"
-
+    Employees,
+    Status = "Active"
 )
-
 ```
-
-
 
 This concept can be used to display only records that match a required condition.
 
+---
 
-
-\---
-
-
-
-\# Searching Records
-
-
+## Searching Records
 
 Search functionality helps users quickly locate records.
 
-
-
 Example:
 
-
-
 ```powerfx
-
 Search(
-
-&#x20;   Employees,
-
-&#x20;   SearchInput.Text,
-
-&#x20;   Name
-
+    Employees,
+    SearchInput.Text,
+    Name
 )
-
 ```
-
-
 
 This can be used with galleries to provide user-friendly search functionality.
 
+---
 
+## Conditional Logic
 
-\---
-
-
-
-\# Conditional Logic
-
-
-
-The If function can be used to implement conditional application behavior.
-
-
+The `If` function can be used to implement conditional application behavior.
 
 Example:
 
-
-
 ```powerfx
-
 If(
-
-&#x20;   IsBlank(TextInput1.Text),
-
-&#x20;   Notify("Please enter a value", NotificationType.Error),
-
-&#x20;   SubmitForm(Form1)
-
+    IsBlank(TextInput1.Text),
+    Notify("Please enter a value", NotificationType.Error),
+    SubmitForm(Form1)
 )
-
 ```
-
-
 
 This approach can be used to validate required input before performing an application action.
 
+---
 
-
-\---
-
-
-
-\# Working with Variables
-
-
+## Working with Variables
 
 Variables can be used to store and manage application state.
 
-
-
 Example:
 
-
-
 ```powerfx
-
 Set(
-
-&#x20;   varSelectedEmployee,
-
-&#x20;   Gallery1.Selected
-
+    varSelectedEmployee,
+    Gallery1.Selected
 )
-
 ```
-
-
 
 The selected record can then be used across different screens or controls.
 
+---
 
-
-\---
-
-
-
-\# Context Variables
-
-
+## Context Variables
 
 Context variables can be used to control functionality within a screen.
 
-
-
 Example:
 
-
-
 ```powerfx
-
 UpdateContext(
-
-&#x20;   {
-
-&#x20;       varShowDetails: true
-
-&#x20;   }
-
+    {
+        varShowDetails: true
+    }
 )
-
 ```
-
-
 
 This can be used to control the visibility of controls or sections within an application screen.
 
+---
 
-
-\---
-
-
-
-\# Collections
-
-
+## Collections
 
 Collections can be used to temporarily store and manage data within a Canvas App.
 
-
-
 Example:
 
-
-
 ```powerfx
-
 ClearCollect(
-
-&#x20;   colEmployees,
-
-&#x20;   Employees
-
+    colEmployees,
+    Employees
 )
-
 ```
 
+Collections can support scenarios such as local data processing, temporary data storage, and application-level data handling.
 
+---
 
-Collections can support scenarios such as local data processing, temporary data storage and application-level data handling.
+## Creating Records
 
-
-
-\---
-
-
-
-\# Creating Records
-
-
-
-The Patch function can be used to create or update records.
-
-
+The `Patch` function can be used to create or update records.
 
 Example:
 
-
-
 ```powerfx
-
 Patch(
-
-&#x20;   Employees,
-
-&#x20;   Defaults(Employees),
-
-&#x20;   {
-
-&#x20;       Name: TextInputName.Text,
-
-&#x20;       Department: DropdownDepartment.Selected.Value
-
-&#x20;   }
-
+    Employees,
+    Defaults(Employees),
+    {
+        Name: TextInputName.Text,
+        Department: DropdownDepartment.Selected.Value
+    }
 )
-
 ```
-
-
 
 This concept can be used when application requirements require direct record creation or updates.
 
+---
 
-
-\---
-
-
-
-\# Conditional Visibility
-
-
+## Conditional Visibility
 
 Power Fx can also be used to control the visibility of application controls.
 
-
-
 Example:
 
-
-
 ```powerfx
-
 If(
-
-&#x20;   User().Email = "admin@example.com",
-
-&#x20;   true,
-
-&#x20;   false
-
+    User().Email = "admin@example.com",
+    true,
+    false
 )
-
 ```
-
-
 
 Conditional logic can be applied to control visibility and functionality based on application requirements.
 
+---
 
-
-\---
-
-
-
-\# Validation Approach
-
-
+## Validation Approach
 
 Input validation is an important part of Canvas App development.
 
-
-
 Common validation checks include:
 
-
-
-\* Required field validation
-
-\* Blank value validation
-
-\* Conditional validation
-
-\* User-friendly error messages
-
-\* Preventing submission of incomplete information
-
-
+* Required field validation
+* Blank value validation
+* Conditional validation
+* User-friendly error messages
+* Preventing submission of incomplete information
 
 Example:
 
-
-
 ```powerfx
-
 If(
-
-&#x20;   IsBlank(TextInputName.Text),
-
-&#x20;   Notify("Name is required", NotificationType.Error)
-
+    IsBlank(TextInputName.Text),
+    Notify("Name is required", NotificationType.Error)
 )
-
 ```
 
+---
 
-
-\---
-
-
-
-\# Key Power Fx Areas
-
-
+## Key Power Fx Areas
 
 My focus while implementing Power Fx includes:
 
-
-
-\* Conditional logic
-
-\* Filtering and searching
-
-\* Variables and collections
-
-\* Data validation
-
-\* Record creation and updates
-
-\* User interface behavior
-
-\* Application state management
-
-
+* Conditional logic
+* Filtering and searching
+* Variables and collections
+* Data validation
+* Record creation and updates
+* User interface behavior
+* Application state management
 
 The objective is to implement clear and maintainable application logic based on functional requirements.
-
-
-
